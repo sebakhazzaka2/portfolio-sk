@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sebastián Khazzaka – Portfolio</title>
+
+  <!-- Meta básicas + social -->
+  <meta name="description" content="Portfolio de Sebastián Khazzaka: proyectos en Java, JavaScript, HTML y CSS." />
+  <meta name="theme-color" content="#0f172a">
+  <meta property="og:title" content="Sebastián Khazzaka – Portfolio">
+  <meta property="og:description" content="Proyectos en Java, JavaScript, HTML y CSS.">
+  <meta property="og:type" content="website">
+
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>
+    (function(){
+      emailjs.init({ publicKey: "jl_WpoTZ3n6iAkYaT" });
+    })();
+  </script>
+
+  <link rel="icon" href="favicon.ico">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#proyectos">Saltar al contenido</a>
+
+  <div class="contenedor">
+
+    <!-- CABECERA -->
+    <section class="card cabecera" aria-labelledby="t-encabezado">
+      <div>
+        <h1 id="t-encabezado">Sebastián Khazzaka</h1>
+        <p>Desarrollador Jr. – Java | JavaScript | HTML | CSS | Haskell</p>
+        <div class="chips" aria-label="fortalezas">
+          <span class="chip">Aprendizaje continuo</span>
+          <span class="chip">Trabajo en equipo</span>
+          <span class="chip">Creatividad</span>
+        </div>
+        <p><strong>Montevideo, Uruguay</strong> ·
+           <a href="mailto:khazzaka2008@hotmail.com">khazzaka2008@hotmail.com</a>
+        </p>
+        <p><a class="btn" href="#proyectos">Ver proyectos</a></p>
+      </div>
+    </section>
+
+
+    <!-- IDIOMAS -->
+    <section class="card" aria-labelledby="t-idiomas">
+      <h3 id="t-idiomas">Idiomas</h3>
+      <ul class="lista">
+        <li class="item">Español — Nativo</li>
+        <li class="item">Portugués — Nativo</li>
+        <li class="item">Inglés — B2 (FCE Cambridge)</li>
+      </ul>
+    </section>
+
+    <!-- FILTROS -->
+    <div class="card filtros" aria-label="Filtros de proyectos">
+      <button class="btn" data-filtro="todos">Todos</button>
+      <button class="btn" data-filtro="java">Java</button>
+      <button class="btn" data-filtro="html">HTML/CSS/JS</button>
+    </div>
+
+    <!-- PROYECTOS -->
+    <section class="card" id="proyectos" aria-labelledby="t-proyectos">
+  <h3 id="t-proyectos">Proyectos</h3>
+  <div id="lista-proyectos" class="proyectos"></div>
+</section>
+
+    <section class="card">
+    <h3>Contacto</h3>
+    <form id="form-contacto">
+      <input id="c-nombre"  type="text" placeholder="Tu nombre" required>
+      <input id="c-email"   type="email" placeholder="Tu email" required>
+      <textarea id="c-msg"  placeholder="Mensaje" rows="4" required></textarea>
+      <button class="btn" type="submit">Enviar</button>
+    </form>
+    <p id="estado-contacto"></p>
+    </section>
+    <footer>© <span id="anio"></span> Sebastián Khazzaka — Portfolio simple</footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
