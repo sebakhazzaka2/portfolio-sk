@@ -39,7 +39,11 @@ h1{ margin:0 0 8px; }
 
 footer{ text-align:center; margin-top:20px; color:#9ca3af; font-size:14px; }
 
-#estado-contacto {
+#estado-contacto {margin-top:.5rem;
+  font-size:.95rem;
+  border:1px solid #ddd;
+  padding:.5rem .75rem;
+  border-radius:.5rem;
   display: block;
   margin-top: 10px;
   font-size: 14px;
@@ -62,3 +66,34 @@ footer{ text-align:center; margin-top:20px; color:#9ca3af; font-size:14px; }
   color: var(--texto);
 }
 #form-contacto button.btn { margin-top: 8px; }
+
+html { scroll-behavior: smooth; }
+
+.skip { position:absolute; left:-9999px; }
+.skip:focus { left:1rem; top:1rem; background:#fff; padding:.5rem .75rem; border-radius:.5rem; border:1px solid #ddd; }
+
+.estado-api {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  padding: 0.6rem 1rem;
+  border-radius: 0.75rem;
+  background-color: #0f172a;
+  color: #f8fafc;
+  font-size: 0.95rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+}
+.estado-api.ok {
+  background-color: #065f46;
+}
+.estado-api.off {
+  background-color: #92400e;
+}
+.estado-api .icono {
+  font-size: 1.2rem;
+}
+.estado-api.hidden {
+  display: none;
+}
