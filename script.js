@@ -2,7 +2,7 @@
 // Config
 // ==============================
 
-const API = "https://portfolioapi-uj2a.onrender.com"; 
+const API = "https://portfolioapi-uj2a.onrender.com/api"; 
 const TIMEOUT_MS = 1500;
 
 // Proyectos de respaldo (se muestran si la API no responde o no existe)
