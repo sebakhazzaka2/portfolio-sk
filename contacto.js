@@ -1,37 +1,43 @@
 // =========================
 //   CONTACTO (frontend)
 // =========================
-// - Este script maneja el envío del formulario de contacto del portfolio.
-// - En producción usa tu API publicada en Render.
-// - En local usa http://localhost:8080/api
 
-// ===== 1) Detección de API (local vs producción)
+console.log("[CONTACTO] Script cargado"); // para verificar que se carga
+
+// 1) Detección de API (local vs producción)
 const API = (location.hostname === "localhost" || location.hostname === "127.0.0.1")
   ? "http://localhost:8080/api"
-  : "https://portfolioapi-uj2a.onrender.com/api"; // <-- tu backend en Render
+  : "https://portfolioapi-uj2a.onrender.com/api";
 
-// ===== 2) Captura de elementos del DOM (coinciden con los IDs del form)
+// 2) Captura de elementos con IDs nuevos y viejos (fallback)
 const $form   = document.getElementById("form-contacto");
-const $nombre = document.getElementById("nombre");
-const $email  = document.getElementById("email");
-const $asunto = document.getElementById("asunto");
-const $mensaje= document.getElementById("mensaje");
-const $extra  = document.getElementById("campo_extra"); // honeypot (oculto)
-const $btn    = document.getElementById("btn-enviar");
-const $estado = document.getElementById("estado");
 
-// ===== 3) Helpers "junior"
+// Nuevos
+let $nombre = document.getElementById("nombre");
+let $email  = document.getElementById("email");
+let $asunto = document.getElementById("asunto");
+let $mensaje= document.getElementById("mensaje");
+let $estado = document.getElementById("estado");
+
+// Viejos (fallback)
+if (!$nombre)  $nombre  = document.getElementById("c-nombre");
+if (!$email)   $email   = document.getElementById("c-email");
+if (!$mensaje) $mensaje = document.getElementById("c-msg");
+if (!$estado)  $estado  = document.getElementById("estado-contacto");
+
+// Extras
+const $extra  = document.getElementById("campo_extra"); // honeypot (oculto)
+const $btn    = document.getElementById("btn-enviar");  // opcional
+
+// 3) Helpers visuales
 function setEstado(texto, esOk = false) {
   if (!$estado) return;
   $estado.textContent = texto;
-  // Verde si OK, rojo si error, gris si info
   $estado.style.color = esOk ? "seagreen" : (texto ? "crimson" : "inherit");
 }
 
 function validarEmailSimple(valor) {
-  // Validación simple para no complicar (suficiente para front)
-  // Nota: el backend también valida.
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(valor);
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(valor || "");
 }
 
 function leerDatosFormulario() {
@@ -43,17 +49,22 @@ function leerDatosFormulario() {
   };
 }
 
-// ===== 4) Envío del formulario
+// 4) Seguridad: si no hay formulario, avisamos y salimos
+if (!$form) {
+  console.error("[CONTACTO] No encontré #form-contacto en el HTML.");
+}
+
+// 5) Envío del formulario
 $form?.addEventListener("submit", async (e) => {
   e.preventDefault();
+  console.log("[CONTACTO] Submit disparado");
 
-  // 4.1) Anti-bots: si el honeypot tiene texto, abortamos en silencio
+  // Anti-bots
   if ($extra && $extra.value) return;
 
-  // 4.2) Tomar datos y validaciones básicas
   const datos = leerDatosFormulario();
 
-  if (!datos.email || !validarEmailSimple(datos.email)) {
+  if (!validarEmailSimple(datos.email)) {
     setEstado("Ingresá un email válido.");
     $email?.focus();
     return;
@@ -64,9 +75,8 @@ $form?.addEventListener("submit", async (e) => {
     return;
   }
 
-  // 4.3) Enviar
   try {
-    setEstado("Enviando..."); // feedback
+    setEstado("Enviando...");
     if ($btn) $btn.disabled = true;
 
     const resp = await fetch(`${API}/contacto`, {
@@ -75,19 +85,16 @@ $form?.addEventListener("submit", async (e) => {
       body: JSON.stringify(datos),
     });
 
-    // Intentamos parsear JSON, pero si falla devolvemos objeto vacío
     const json = await resp.json().catch(() => ({}));
+    console.log("[CONTACTO] Respuesta:", resp.status, json);
 
     if (!resp.ok || !json.ok) {
-      // Si el backend devuelve {ok:false,error:"..."} lo mostramos
-      const msg = json?.error || "No se pudo enviar tu correo.";
+      const msg = json?.error || `Error de servidor (${resp.status})`;
       throw new Error(msg);
     }
 
-    // 4.4) Éxito
     setEstado("¡Mensaje enviado! Te responderé a la brevedad.", true);
     $form.reset();
-
   } catch (err) {
     console.error("[CONTACTO] Error:", err);
     setEstado(err?.message || "No se pudo enviar tu correo.");
@@ -96,13 +103,12 @@ $form?.addEventListener("submit", async (e) => {
   }
 });
 
-// ===== 5) UX suave: limpiar estado al tipear
+// 6) UX: limpiar estado al tipear
 [$nombre, $email, $asunto, $mensaje].forEach(($el) => {
   $el?.addEventListener("input", () => {
-    // Si hay algo escrito, limpiamos el mensaje de error
     if ($estado?.textContent) setEstado("", false);
   });
 });
 
-// ===== 6) Accesibilidad básica
+// 7) Accesibilidad
 if ($estado) $estado.setAttribute("aria-live", "polite");
