@@ -14,27 +14,38 @@
 
   <link rel="icon" href="favicon.ico">
   <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>
+  
+  emailjs.init({ publicKey: "jl_WpoTZ3n6iAkYaT" });
+  </script>
 </head>
 <body>
   <a class="skip-link" href="#proyectos">Saltar al contenido</a>
 
   <div class="contenedor">
     <!-- CABECERA -->
-    <section class="card cabecera" aria-labelledby="t-encabezado">
-      <div>
-        <h1 id="t-encabezado">Sebastián Khazzaka</h1>
-        <p>Desarrollador Jr. – Java | JavaScript | HTML | CSS | Haskell</p>
-        <div class="chips" aria-label="fortalezas">
-          <span class="chip">Aprendizaje continuo</span>
-          <span class="chip">Trabajo en equipo</span>
-          <span class="chip">Creatividad</span>
-        </div>
-        <p><strong>Montevideo, Uruguay</strong> ·
-           <a href="mailto:khazzaka2008@hotmail.com">khazzaka2008@hotmail.com</a>
-        </p>
-        <p><a class="btn" href="#proyectos">Ver proyectos</a></p>
-      </div>
-    </section>
+<section class="card cabecera" aria-labelledby="t-encabezado">
+  <div>
+    <h1 id="t-encabezado">Sebastián Khazzaka</h1>
+    <p>Desarrollador Jr. – Java | JavaScript | HTML | CSS | Haskell</p>
+    <div class="chips" aria-label="fortalezas">
+      <span class="chip">Aprendizaje continuo</span>
+      <span class="chip">Trabajo en equipo</span>
+      <span class="chip">Creatividad</span>
+    </div>
+    <p><strong>Montevideo, Uruguay</strong> ·
+      <a href="mailto:khazzaka2008@hotmail.com">khazzaka2008@hotmail.com</a>
+    </p>
+    <p><a class="btn" href="#proyectos">Ver proyectos</a></p>
+  </div>
+
+  <!-- badges de estado -->
+  <div class="contador">
+    <span id="estado-api" class="badge"><span class="icono">…</span> <span id="texto-api">Conectando al backend…</span></span>
+    <span id="visitas" class="badge">Visitas: —</span>
+  </div>
+</section>
 
     <!-- IDIOMAS -->
     <section class="card" aria-labelledby="t-idiomas">
