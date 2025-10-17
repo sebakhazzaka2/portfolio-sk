@@ -14,38 +14,36 @@
 
   <link rel="icon" href="favicon.ico">
   <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-  <script>
-  
-  emailjs.init({ publicKey: "jl_WpoTZ3n6iAkYaT" });
-  </script>
 </head>
 <body>
   <a class="skip-link" href="#proyectos">Saltar al contenido</a>
 
   <div class="contenedor">
     <!-- CABECERA -->
-<section class="card cabecera" aria-labelledby="t-encabezado">
-  <div>
-    <h1 id="t-encabezado">Sebastián Khazzaka</h1>
-    <p>Desarrollador Jr. – Java | JavaScript | HTML | CSS | Haskell</p>
-    <div class="chips" aria-label="fortalezas">
-      <span class="chip">Aprendizaje continuo</span>
-      <span class="chip">Trabajo en equipo</span>
-      <span class="chip">Creatividad</span>
-    </div>
-    <p><strong>Montevideo, Uruguay</strong> ·
-      <a href="mailto:khazzaka2008@hotmail.com">khazzaka2008@hotmail.com</a>
-    </p>
-    <p><a class="btn" href="#proyectos">Ver proyectos</a></p>
-  </div>
+    <section class="card cabecera" aria-labelledby="t-encabezado">
+      <div>
+        <h1 id="t-encabezado">Sebastián Khazzaka</h1>
+        <p>Desarrollador Jr. – Java | JavaScript | HTML | CSS | Haskell</p>
+        <div class="chips" aria-label="fortalezas">
+          <span class="chip">Aprendizaje continuo</span>
+          <span class="chip">Trabajo en equipo</span>
+          <span class="chip">Creatividad</span>
+        </div>
+        <p><strong>Montevideo, Uruguay</strong> ·
+          <a href="mailto:khazzaka2008@hotmail.com">khazzaka2008@hotmail.com</a>
+        </p>
+        <p><a class="btn" href="#proyectos">Ver proyectos</a></p>
+      </div>
 
-  <!-- badges de estado -->
-  <div class="contador">
-    <span id="estado-api" class="badge"><span class="icono">…</span> <span id="texto-api">Conectando al backend…</span></span>
-    <span id="visitas" class="badge">Visitas: —</span>
-  </div>
-</section>
+      <!-- badges de estado -->
+      <div class="contador">
+        <span id="estado-api" class="badge">
+          <span class="icono">…</span>
+          <span id="texto-api">Conectando al backend…</span>
+        </span>
+        <span id="visitas" class="badge">Visitas: —</span>
+      </div>
+    </section>
 
     <!-- IDIOMAS -->
     <section class="card" aria-labelledby="t-idiomas">
@@ -73,18 +71,29 @@
     <!-- CONTACTO -->
     <section class="card">
       <h3>Contacto</h3>
-      <form id="form-contacto">
-        <input id="c-nombre"  type="text" placeholder="Tu nombre" required>
-        <input id="c-email"   type="email" placeholder="Tu email" required>
-        <textarea id="c-msg"  placeholder="Mensaje" rows="4" required></textarea>
-        <button class="btn" type="submit">Enviar</button>
+      <form id="form-contacto" novalidate>
+        <input id="nombre" name="nombre" type="text" placeholder="Tu nombre" autocomplete="name">
+        <input id="email"  name="email"  type="email" placeholder="Tu email *" required autocomplete="email">
+        <input id="asunto" name="asunto" type="text" placeholder="Asunto (opcional)">
+        <textarea id="mensaje" name="mensaje" placeholder="Mensaje *" rows="4" required></textarea>
+
+        <!-- Honeypot anti-bots (oculto) -->
+        <input id="campo_extra" name="campo_extra" type="text" style="display:none" tabindex="-1" autocomplete="off">
+
+        <button id="btn-enviar" class="btn" type="submit">Enviar</button>
       </form>
-      <p id="estado-contacto"></p>
+
+      <!-- Estado accesible de envío -->
+      <p id="estado" aria-live="polite"></p>
     </section>
 
     <footer>© <span id="anio"></span> Sebastián Khazzaka — Portfolio simple</footer>
   </div>
 
+  <!-- Tu JS general (contador, proyectos, etc.) -->
   <script src="script.js"></script>
+
+  <!-- Módulo del formulario de contacto -->
+  <script type="module" src="js/contacto.js"></script>
 </body>
 </html>
