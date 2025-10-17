@@ -34,11 +34,6 @@
         </p>
         <p><a class="btn" href="#proyectos">Ver proyectos</a></p>
       </div>
-
-      <div class="contador">
-        <span id="estado-api" class="badge">API: …</span>
-        <span id="visitas" class="badge">Visitas: —</span>
-      </div>
     </section>
 
     <!-- IDIOMAS -->
@@ -50,6 +45,12 @@
         <li class="item">Inglés — B2 (FCE Cambridge)</li>
       </ul>
     </section>
+
+    <!-- ESTADO DEL BACKEND -->
+    <div id="estado-api" class="card estado-api" aria-live="polite">
+      <span class="icono">⏳</span>
+      <span id="texto-api">Verificando conexión con el backend...</span>
+    </div>
 
     <!-- FILTROS -->
     <div class="card filtros" aria-label="Filtros de proyectos">
