@@ -4,20 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Sebastián Khazzaka – Portfolio</title>
-
-  <!-- Meta básicas + social -->
-  <meta name="description" content="Portfolio de Sebastián Khazzaka: proyectos en Java, JavaScript, HTML y CSS." />
-  <meta name="theme-color" content="#0f172a">
-  <meta property="og:title" content="Sebastián Khazzaka – Portfolio">
-  <meta property="og:description" content="Proyectos en Java, JavaScript, HTML y CSS.">
+  <meta name="description" content="Portfolio de Sebastián Khazzaka: proyectos Java y JS, demos y repos.">
+  <meta property="og:title" content="Sebastián Khazzaka — Portfolio">
+  <meta property="og:description" content="Proyectos Java y JS con links a demo y repos.">
   <meta property="og:type" content="website">
-
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-  <script>
-    (function(){
-      emailjs.init({ publicKey: "jl_WpoTZ3n6iAkYaT" });
-    })();
-  </script>
+  <meta property="og:url" content="https://sebakhazzaka2.github.io/portfolio-sk/">
+  <meta property="og:image" content="https://sebakhazzaka2.github.io/portfolio-sk/favicon.ico">
+  <meta name="theme-color" content="#0f172a">
 
   <link rel="icon" href="favicon.ico">
   <link rel="stylesheet" href="style.css">
@@ -26,7 +19,6 @@
   <a class="skip-link" href="#proyectos">Saltar al contenido</a>
 
   <div class="contenedor">
-
     <!-- CABECERA -->
     <section class="card cabecera" aria-labelledby="t-encabezado">
       <div>
@@ -42,8 +34,12 @@
         </p>
         <p><a class="btn" href="#proyectos">Ver proyectos</a></p>
       </div>
-    </section>
 
+      <div class="contador">
+        <span id="estado-api" class="badge">API: …</span>
+        <span id="visitas" class="badge">Visitas: —</span>
+      </div>
+    </section>
 
     <!-- IDIOMAS -->
     <section class="card" aria-labelledby="t-idiomas">
@@ -64,20 +60,22 @@
 
     <!-- PROYECTOS -->
     <section class="card" id="proyectos" aria-labelledby="t-proyectos">
-  <h3 id="t-proyectos">Proyectos</h3>
-  <div id="lista-proyectos" class="proyectos"></div>
-</section>
-
-    <section class="card">
-    <h3>Contacto</h3>
-    <form id="form-contacto">
-      <input id="c-nombre"  type="text" placeholder="Tu nombre" required>
-      <input id="c-email"   type="email" placeholder="Tu email" required>
-      <textarea id="c-msg"  placeholder="Mensaje" rows="4" required></textarea>
-      <button class="btn" type="submit">Enviar</button>
-    </form>
-    <p id="estado-contacto"></p>
+      <h3 id="t-proyectos">Proyectos</h3>
+      <div id="lista-proyectos" class="proyectos"></div>
     </section>
+
+    <!-- CONTACTO -->
+    <section class="card">
+      <h3>Contacto</h3>
+      <form id="form-contacto">
+        <input id="c-nombre"  type="text" placeholder="Tu nombre" required>
+        <input id="c-email"   type="email" placeholder="Tu email" required>
+        <textarea id="c-msg"  placeholder="Mensaje" rows="4" required></textarea>
+        <button class="btn" type="submit">Enviar</button>
+      </form>
+      <p id="estado-contacto"></p>
+    </section>
+
     <footer>© <span id="anio"></span> Sebastián Khazzaka — Portfolio simple</footer>
   </div>
 
